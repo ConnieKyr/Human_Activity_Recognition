@@ -179,10 +179,10 @@ kable(data.frame(models, accuracies))
 | xgbTree               |   0.9935939|
 | RF\_no\_preprocessing |   0.9919928|
 
-The models xgbTree and RF with preprocessing give the best accuracy during training.
+The models xgbTree and RF with preprocessing give the best accuracy during training. All the accuracies from the predictions of the hold-out samples at each Fold of the cross-validation process, are averaged and give us in the end the overall Accuracy. This is an estimate of the out-of-sample error rate.
 
-ML Model Assessment and Out of Sample Error
--------------------------------------------
+ML Model Assessment and Validation
+----------------------------------
 
 We finally assessed the models on the validation test set:
 
@@ -224,7 +224,7 @@ cf_4$overall["Accuracy"]
     ##  Accuracy 
     ## 0.9898046
 
-The model RF again seems to give high accuracy in the validation set (good generalization). The version without preprocessing does slightly better for the Classes A, B, and E, while the version with preprocessing predicts slightly better the other two classes (C and D) and has better overall Accuracy. Comparing the Accuracies for the validation test though, we notice that the xgbTree model slightly outperforms the RF one. Higher Accuracy means lower out of sample Error rate. A ranking of variable importance according to the RF model with preprocessing can be seen in Appendix Figure 4. Also, in Appendix Figure 5 we see a final prediction accuracy on the validation set of the various models.
+The model RF again seems to give high accuracy in the validation set (good generalization). The version without preprocessing does slightly better for the Classes A, B, and E, while the version with preprocessing predicts slightly better the other two classes (C and D) and has better overall Accuracy. Comparing the Accuracies for the validation test though, we notice that the xgbTree model slightly outperforms the RF one. A ranking of variable importance according to the RF model with preprocessing can be seen in Appendix Figure 4. Also, in Appendix Figure 5 we see a final prediction accuracy on the validation set of the various models.
 
 Final Conclusions
 -----------------

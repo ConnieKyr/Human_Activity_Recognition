@@ -173,9 +173,10 @@ kable(data.frame(models, accuracies))
 ```
 
 The models xgbTree and RF with preprocessing give the best accuracy during training.
+All the accuracies from the predictions of the hold-out samples at each Fold of the cross-validation process, are averaged and give us in the end the overall Accuracy. This is an estimate of the out-of-sample error rate.
 
 
-## ML Model Assessment and Out of Sample Error
+## ML Model Assessment and Validation
 
 We finally assessed the models on the validation test set:
 
@@ -196,7 +197,7 @@ cf_4<-confusionMatrix(pred_4, testing_sel$classe)
 cf_4$overall["Accuracy"]
 ```
 
-The model RF again seems to give high accuracy in the validation set (good generalization). The version without preprocessing does slightly better for the Classes A, B, and E, while the version with preprocessing predicts slightly better the other two classes (C and D) and has better overall Accuracy. Comparing the Accuracies for the validation test though, we notice that the xgbTree model slightly outperforms the RF one. Higher Accuracy means lower out of sample Error rate.
+The model RF again seems to give high accuracy in the validation set (good generalization). The version without preprocessing does slightly better for the Classes A, B, and E, while the version with preprocessing predicts slightly better the other two classes (C and D) and has better overall Accuracy. Comparing the Accuracies for the validation test though, we notice that the xgbTree model slightly outperforms the RF one. 
 A ranking of variable importance according to the RF model with preprocessing can be seen in Appendix Figure 4.
 Also, in Appendix Figure 5 we see a final prediction accuracy on the validation set of the various models.
 
@@ -217,7 +218,7 @@ labels_for_quiz
 
 **Figure 1: Distribution of classe variable.**
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='400px'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='400px', fig.align='center'}
 barplot(table(clean_tr$classe))
 ```
 
@@ -229,19 +230,19 @@ corrplot(cor(training[,1:52]), type = "upper", order = "hclust", tl.col = "black
 
 **Figure 3: RF model training (with preprocessing).**
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='500px'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='500px', fig.align='center'}
 plot(model_1)
 ```
 
 **Figure 4: RF model Variable importance (with preprocessing).**
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='500px'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='600px', fig.align='center'}
 plot(varImp(model_1))
 ```
 
 **Figure 5: ML models Final Accuracies on the validation set.**
 
-```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='500px'}
+```{r eval=TRUE, message=FALSE, warning=FALSE, out.width='500px', fig.align='center'}
 cols<-c("RF", "gbm", "xgbTree", "RF_no_preproc")
 vals<-c(cf_1$overall[["Accuracy"]], cf_2$overall[["Accuracy"]], cf_3$overall[["Accuracy"]], cf_4$overall[["Accuracy"]])
 acc<-data.frame(cols, vals)
